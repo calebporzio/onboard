@@ -3,7 +3,7 @@
 use Calebporzio\Onboard\OnboardingSteps;
 use Calebporzio\Onboard\OnboardingManager;
 
-class OnboardingTest extends PHPUnit_Framework_TestCase
+class OnboardTest extends PHPUnit_Framework_TestCase
 {
 	/** @test */
 	public function is_in_progress_when_all_steps_are_incomplete()
