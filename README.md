@@ -45,3 +45,5 @@ Configure your steps in your `App\Providers\AppServiceProvider.php`
 	    	->completeIf(function (User $user) {
 	    		return $user->hasGeneratedApiToken();
 	    	});
+```
+(Work in Progress)
