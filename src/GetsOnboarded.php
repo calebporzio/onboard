@@ -4,7 +4,7 @@ namespace Calebporzio\Onboard;
 
 use Illuminate\Support\Facades\App;
 
-trait HasOnboarding
+trait GetsOnboarded
 {
 	public function onboarding()
 	{
