@@ -1,3 +1,5 @@
+![](https://raw.githubusercontent.com/calebporzio/onboard/master/onboard-logo.png)
+
 # Onboard
 A Laravel package to help track user onboarding steps.
 
