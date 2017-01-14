@@ -48,6 +48,7 @@ Configure your steps in your `App\Providers\AppServiceProvider.php`
 	    		return $user->posts->count() > 0;
 	    	});
 ```
+## Usage:
 Now you can access these steps along with their state wherever you like. Here is an example blade template:
 ```php
 @if (Auth::user()->onboarding()->inProgress())
