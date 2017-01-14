@@ -34,18 +34,70 @@ Configure your steps in your `App\Providers\AppServiceProvider.php`
     ...
     public function boot()
     {
-	    Onboard::addStep('Add Your S3 Credentials')
-	    	->link('/settings#/bucket')
-	    	->cta('Add Them')
+	    Onboard::addStep('Complete Profile')
+	    	->link('/profile')
+	    	->cta('Complete')
 	    	->completeIf(function (User $user) {
-	    		return $user->hasAddedS3Creds();
+	    		return $user->profile->isComplete();
 	    	});
 
-	    Onboard::addStep('Create an API Token')
-	    	->link('/settings#/api')
-	    	->cta('Create One')
+	    Onboard::addStep('Create Your First Post')
+	    	->link('/post/create')
+	    	->cta('Create Post')
 	    	->completeIf(function (User $user) {
-	    		return $user->hasGeneratedApiToken();
+	    		return $user->posts->count() > 0;
 	    	});
 ```
-(Work in Progress)
+Now you can access these steps along with their state wherever you like. Here is an example blade template:
+```php
+@if (Auth::user()->onboarding()->inProgress())
+	<div>
+
+		@foreach (Auth::user()->onboarding()->steps as $step)
+			<span>
+				@if($step->complete())
+					<i class="fa fa-check-square-o fa-fw" ></i>
+					<s>{{ $loop->iteration }}. {{ $step->title }}</s>
+				@else
+					<i class="fa fa-square-o fa-fw"></i>
+					{{ $loop->iteration }}. {{ $step->title }}
+				@endif
+			</span>
+						
+			<a href="{{ $step->link }}" {{ $step->complete() ? 'disabled' : '' }}>
+				{{ $step->cta }}
+			</a>
+		@endforeach
+
+	</div>
+@endif
+```
+Check out all the available features below:
+```php
+$onboarding = Auth::user()->onboarding();
+
+$onboarding->inProgress();
+
+$onboarding->finished();
+
+$onboarding->steps()->each(function($step) {
+	$step->title;
+	$step->cta;
+	$step->link;
+	$step->complete();
+	$step->incomplete();
+}
+```
+Definining custom attributes and accessing them:
+```php
+// Defining the attributes
+Onboard::addStep('Step w/ custom attributes')
+	->attributes([
+		'name' => 'Waldo',
+		'shirt_color' => 'Red & White',
+	]);
+
+// Accessing them
+$step->name;
+$step->shirt_color;
+```
