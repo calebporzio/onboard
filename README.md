@@ -56,7 +56,7 @@ Now you can access these steps along with their state wherever you like. Here is
 		@foreach (Auth::user()->onboarding()->steps as $step)
 			<span>
 				@if($step->complete())
-					<i class="fa fa-check-square-o fa-fw" ></i>
+					<i class="fa fa-check-square-o fa-fw"></i>
 					<s>{{ $loop->iteration }}. {{ $step->title }}</s>
 				@else
 					<i class="fa fa-square-o fa-fw"></i>
@@ -86,7 +86,7 @@ $onboarding->steps()->each(function($step) {
 	$step->link;
 	$step->complete();
 	$step->incomplete();
-}
+});
 ```
 Definining custom attributes and accessing them:
 ```php
