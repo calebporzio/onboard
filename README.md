@@ -5,11 +5,11 @@ A Laravel package to help track user onboarding steps.
 
 ## Installation:
 
-1. Install the package via composer
+* Install the package via composer
 ```bash
 composer require calebporzio/onboard
 ```
-2. Register the Service Provider and Facade in `config/app.php`
+* Register the Service Provider and Facade in `config/app.php`
 ```php
 'providers' => [
     ...
@@ -19,7 +19,7 @@ composer require calebporzio/onboard
     ...
     Calebporzio\Onboard\OnboardFacade::class,
 ```
-3. Add the `Calebporzio\Onboard\GetsOnboarded` trait to your app's User model
+* Add the `Calebporzio\Onboard\GetsOnboarded` trait to your app's User model
 ```php
 class User extends Model
 {
