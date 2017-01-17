@@ -101,7 +101,7 @@ class OnboardingStep
 	public function complete()
 	{
 		if ($this->completeIf && $this->user) {
-			return call_user_func_array($this->completeIf, [$this->user]) ? true : false;
+			return !! call_user_func_array($this->completeIf, [$this->user]);
 		}
 
 		return false;
