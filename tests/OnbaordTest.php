@@ -2,10 +2,11 @@
 
 use Calebporzio\Onboard\OnboardingSteps;
 use Calebporzio\Onboard\OnboardingManager;
+use PHPUnit\Framework\TestCase;
 
-class OnboardTest extends PHPUnit_Framework_TestCase
+class OnboardTest extends TestCase
 {
-	/** 
+	/**
 	 * Dummy user object.
 	 */
 	protected $user;
@@ -56,8 +57,8 @@ class OnboardTest extends PHPUnit_Framework_TestCase
 	{
 		$onboardingSteps = new OnboardingSteps;
 		$onboardingSteps->addStep('Test Step')
-			->completeIf(function() { 
-				return true; 
+			->completeIf(function() {
+				return true;
 			});
 
 		$onboarding = new OnboardingManager($this->user, $onboardingSteps);
@@ -74,10 +75,10 @@ class OnboardTest extends PHPUnit_Framework_TestCase
 
 		$onboardingSteps = new OnboardingSteps;
 		$onboardingSteps->addStep('Test Step')
-			->completeIf(function($user) { 
+			->completeIf(function($user) {
 				// if this gets called, it ensures that the right object was passed through.
 				$user->testMe();
-				return true; 
+				return true;
 			});
 
 		$onboarding = new OnboardingManager($user, $onboardingSteps);
