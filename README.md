@@ -102,3 +102,36 @@ Onboard::addStep('Step w/ custom attributes')
 $step->name;
 $step->shirt_color;
 ```
+
+
+## Example middlware
+
+If you want to ensure that your user is redirected to the next 
+unfinished onboarding step, whenever they access your web application,  
+you can use the following middleware as a starting point:
+
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Auth;
+use Closure;
+
+class RedirectToUnfinishedOnboardingStep
+{
+    public function handle($request, Closure $next)
+    {
+        if (Auth::user()->onboarding()->inProgress()) {
+            return redirect()->to(
+                Auth::user()->onboarding()->nextUnfinishedStep->link
+            );
+        }
+        
+        return $next($request);
+    }
+}
+```
+
+**Quick tip**: Don't add this middleware to routes that update the state 
+of the onboarding steps, your users will not be able to progress because they will be redirected back to the onboarding step.
