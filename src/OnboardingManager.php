@@ -60,4 +60,16 @@ class OnboardingManager {
 		// Report onboarding is finished if no incomplete steps remain.
 		->isEmpty();
 	}
+
+    /**
+     * Get the next unfinished onboarding step, or null if already all steps are completed.
+     *
+     * @return null|OnboardingStep
+     */
+    public function nextUnfinishedStep()
+    {
+        return collect($this->steps)->first(function ($step) {
+            return $step->incomplete();
+        });
+	}
 }
