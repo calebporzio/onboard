@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\App;
  */
 trait GetsOnboarded
 {
-	/**
-	 * This provides a pathway for the package's API
-	 * 
-	 * @return \Calebporzio\Onboard\OnboardingManager $onboarding
-	 */
-	public function onboarding()
-	{
-		return App::make(OnboardingManager::class, [$this]);
-	}
+    /**
+     * This provides a pathway for the package's API
+     *
+     * @return \Calebporzio\Onboard\OnboardingManager $onboarding
+     */
+    public function onboarding()
+    {
+        return App::make(OnboardingManager::class, ['user' => $this]);
+    }
 }
