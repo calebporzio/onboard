@@ -104,11 +104,9 @@ $step->shirt_color;
 ```
 
 
-## Example middlware
+## Example middleware
 
-If you want to ensure that your user is redirected to the next 
-unfinished onboarding step, whenever they access your web application,  
-you can use the following middleware as a starting point:
+If you want to ensure that your user is redirected to the next unfinished onboarding step, whenever they access your web application, you can use the following middleware as a starting point:
 
 ```php
 <?php
@@ -133,5 +131,4 @@ class RedirectToUnfinishedOnboardingStep
 }
 ```
 
-**Quick tip**: Don't add this middleware to routes that update the state 
-of the onboarding steps, your users will not be able to progress because they will be redirected back to the onboarding step.
+**Quick tip**: Don't add this middleware to routes that update the state of the onboarding steps, your users will not be able to progress because they will be redirected back to the onboarding step.
