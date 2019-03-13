@@ -122,7 +122,7 @@ class RedirectToUnfinishedOnboardingStep
     {
         if (Auth::user()->onboarding()->inProgress()) {
             return redirect()->to(
-                Auth::user()->onboarding()->nextUnfinishedStep->link
+                Auth::user()->onboarding()->nextUnfinishedStep()->link
             );
         }
         
