@@ -31,30 +31,38 @@ class User extends Model
 
 Configure your steps in your `App\Providers\AppServiceProvider.php`
 ```php
-    ...
+
+use App\User;
+use Calebporzio\Onboard\OnboardFacade;
+
+class AppServiceProvider extends ServiceProvider
+{
+    // ...
+
     public function boot()
     {
-	    Onboard::addStep('Complete Profile')
+	    OnboardFacade::addStep('Complete Profile')
 	    	->link('/profile')
 	    	->cta('Complete')
 	    	->completeIf(function (User $user) {
 	    		return $user->profile->isComplete();
 	    	});
 
-	    Onboard::addStep('Create Your First Post')
+	    OnboardFacade::addStep('Create Your First Post')
 	    	->link('/post/create')
 	    	->cta('Create Post')
 	    	->completeIf(function (User $user) {
 	    		return $user->posts->count() > 0;
 	    	});
 ```
+
 ## Usage:
 Now you can access these steps along with their state wherever you like. Here is an example blade template:
 ```php
-@if (Auth::user()->onboarding()->inProgress())
+@if (auth()->user()->onboarding()->inProgress())
 	<div>
 
-		@foreach (Auth::user()->onboarding()->steps as $step)
+		@foreach (auth()->user()->onboarding()->steps as $step)
 			<span>
 				@if($step->complete())
 					<i class="fa fa-check-square-o fa-fw"></i>
@@ -92,7 +100,7 @@ $onboarding->steps()->each(function($step) {
 Definining custom attributes and accessing them:
 ```php
 // Defining the attributes
-Onboard::addStep('Step w/ custom attributes')
+OnboardFacade::addStep('Step w/ custom attributes')
 	->attributes([
 		'name' => 'Waldo',
 		'shirt_color' => 'Red & White',
@@ -120,9 +128,9 @@ class RedirectToUnfinishedOnboardingStep
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->onboarding()->inProgress()) {
+        if (auth()->user()->onboarding()->inProgress()) {
             return redirect()->to(
-                Auth::user()->onboarding()->nextUnfinishedStep()->link
+                auth()->user()->onboarding()->nextUnfinishedStep()->link
             );
         }
         
