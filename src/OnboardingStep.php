@@ -2,6 +2,8 @@
 
 namespace Calebporzio\Onboard;
 
+use Illuminate\Support\Arr;
+
 /**
  * The main class for this package. This contains all the logic
  * for creating, and accessing onboarding steps.
@@ -126,7 +128,7 @@ class OnboardingStep
 	 */
 	public function attribute($key, $default = null)
     {
-        return array_get($this->attributes, $key, $default);
+        return Arr::get($this->attributes, $key, $default);
     }
 
     /**
