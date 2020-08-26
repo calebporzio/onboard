@@ -72,4 +72,21 @@ class OnboardingManager {
             return $step->incomplete();
         });
     }
+    
+    
+    /**
+     * Get the percentage of steps completed
+     *
+     * @return null|percentageCompleted
+     */
+    public function percentageCompleted()
+    {
+        $total_complete_steps = collect($this->steps)->filter(function ($step) {
+            return $step->complete();
+        })->count();
+
+        $total_steps = collect($this->steps)->count();
+
+        return $total_complete_steps / $total_steps * 100;
+    }
 }
