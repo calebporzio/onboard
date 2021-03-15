@@ -11,7 +11,7 @@ class OnboardTest extends TestCase
      */
     protected $user;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->user = $this->getMock('User');
     }
@@ -140,7 +140,7 @@ class OnboardTest extends TestCase
 
         $onboarding = new OnboardingManager($user, $onboardingSteps);
 
-        // Calling finished() will triger the completeIf callback.
+        // Calling finished() will trigger the completeIf callback.
         $this->assertTrue($onboarding->finished());
     }
 }
