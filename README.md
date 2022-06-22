@@ -1,3 +1,7 @@
+## Note: This package has been archived, you should use it's successor "Laravel Onboard" instead: https://github.com/spatie/laravel-onboard
+
+---
+
 ![](https://raw.githubusercontent.com/calebporzio/onboard/master/onboard-logo.png)
 
 # Onboard
